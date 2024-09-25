@@ -60,33 +60,40 @@
                         <li>
                             <a href="product">Products</a>
                             <div class="megamenu megamenu-fixed-width">
+                                <?php
+                                    require('db.php');
+                                    function hien_thi_menu($limitStart, $limitEnd) {
+                                        global $link;
+                                        $tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC LIMIT $limitStart, $limitEnd";
+                                        $tv_11 = mysqli_query($link, $tv1);
+                                        while ($tv_21 = mysqli_fetch_array($tv_11)) {
+                                            $name_url = strtolower($tv_21['name_url']);
+                                            $thuocloai = $tv_21['thuocloai'];
+                                            echo "<li><a href='category/{$name_url}'>{$thuocloai}</a></li>";
+                                        }
+                                    }
+                                    ?>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-3">
                                         <ul class="submenu">
-                                            <?php
-                                            require('db.php');
-                                            $tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC LIMIT 6";
-                                            $tv_11 = mysqli_query($link, $tv1);
-                                            while ($tv_21 = mysqli_fetch_array($tv_11)) {
-                                                $id = $tv_21['id'];
-                                                $thuocloai = $tv_21['thuocloai'];
-                                                $name_url = strtolower($tv_21['name_url']);
-                                            ?>
-                                                <li>
-                                                    <a href="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></a>
-                                                </li>
-                                            <?php } ?>
+                                            <?php hien_thi_menu(0, 5);?>
                                         </ul>
-
                                     </div>
-                                    <div class="col-lg-6 p-0">
+                                    <div class="col-lg-3">
+                                        <ul class="submenu">
+                                            <?php hien_thi_menu(5, 4);?>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3 p-0">
                                         <div class="menu-banner menu-banner-2">
                                             <figure>
-                                                <img src="hinhmenu/banner/bannermenu-faugetglasses.webp" alt="Menu banner" class="product-promo" width="380" height="790">
+                                                <img src="hinhmenu/banner/bannermenu-faugetglasses.webp"
+                                                    alt="Menu banner" class="product-promo" width="380" height="790">
                                             </figure>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </li>
                         <li><a href="news/">News</a></li>
@@ -110,13 +117,14 @@
                                     $url = $tv_2['linkurl'];
                                     $link = str_replace("?", "", strtolower("about/$url"));
                                 ?>
-                                    <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
+                                <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
                                 <?php } ?>
                             </ul>
                         </li>
                         <li><a href="contact">Contact</a></li>
 
-                        <li class="float-right"><a href="https://hackhebikestore.site/" target="_blank">Hackhe Bike Store!</a>
+                        <li class="float-right"><a href="https://hackhebikestore.site/" target="_blank">Hackhe Bike
+                                Store!</a>
                         </li>
                     </ul>
                 </nav>
@@ -128,8 +136,8 @@
                     <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
                     <form action=" #" method="get">
                         <div class="header-search-wrapper">
-                            <input type="search" class="form-control" name="q" id="q"
-                                placeholder="I'm searching for..." required>
+                            <input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..."
+                                required>
                             <div class="select-custom font2">
                                 <select id="cat" name="cat">
                                     <option value="" selected="selected">Select type</option>
@@ -141,7 +149,7 @@
                                         $name_url = strtolower($tv_21['name_url']);
                                         $thuocloai = $tv_21['thuocloai'];
                                     ?>
-                                        <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></option>
+                                    <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -154,8 +162,8 @@
                 </a>
 
                 <div class="dropdown cart-dropdown">
-                    <a href="#" title="Cart" class="dropdown-toggle cart-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="#" title="Cart" class="dropdown-toggle cart-toggle" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="minicart-icon"></i>
                         <span class="cart-count badge-circle">0</span>
                     </a>

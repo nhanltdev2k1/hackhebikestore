@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 09:43 AM
+-- Generation Time: Sep 25, 2024 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `faugetglass_data`
+-- Database: `hackhebikestore_data`
 --
 
 -- --------------------------------------------------------
@@ -228,10 +228,15 @@ CREATE TABLE `loai_ma_sanpham` (
 --
 
 INSERT INTO `loai_ma_sanpham` (`id`, `thuocloai`, `thuocloai_en`, `trangchu`, `hinhanh`, `logo`, `noidung`, `noidung_en`, `name_url`) VALUES
-(1, 'Sunglasses', '', 0, '', '', '&nbsp;1111', '', 'Sunglasses'),
-(2, 'Transition Glasses', '', 0, '', '', '&nbsp;', '', 'Transition-Glasses'),
-(3, 'Frames', '', 0, '', '', '&nbsp;', '', 'Frames'),
-(4, 'Accessories', '', 0, '', '', '&nbsp;', '', 'Accessories');
+(1, 'City Bikes', '', 0, '', '', '', '', 'City-Bikes'),
+(2, 'Mountain Bikes', '', 0, '', '', '&nbsp;', '', 'Mountain-Bikes'),
+(3, 'Women\'s Bikes', '', 0, '', '', '&nbsp;', '', 'Womens-Bikes'),
+(4, 'Folding Bikes', '', 0, '', '', '&nbsp;', '', 'Folding-Bikes'),
+(6, 'Racing Bikes', '', 0, '', '', '', '', 'Racing-Bikes'),
+(7, 'Kids\' Bikes', '', 0, '', '', '', '', 'Kids-Bikes'),
+(8, 'Training Equipment', '', 0, '', '', '', '', 'Training-Equipment'),
+(9, 'Bike Accessories', '', 0, '', '', '', '', 'Bike-Accessories'),
+(10, 'Cycling Apparel', '', 0, '', '', '', '', 'Cycling-Apparel');
 
 -- --------------------------------------------------------
 
@@ -266,7 +271,7 @@ CREATE TABLE `loai_tin_sanpham` (
 --
 
 INSERT INTO `loai_tin_sanpham` (`id`, `thuocloai`, `thuocloai_en`, `hinhanh`, `logo`) VALUES
-(47, 'Bún bò huế', '', '', '');
+(47, 'Tổng Hợp', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -497,8 +502,8 @@ CREATE TABLE `thuong_mai` (
 --
 
 INSERT INTO `thuong_mai` (`id`, `hinhanh`, `mota`, `tieude`) VALUES
-(31, 'slideshow-Faugetglasses-001.webp', '', 'slideshow-Faugetglasses-001'),
-(32, 'slideshow-Faugetglasses-002.webp', '', 'slideshow-Faugetglasses-002');
+(33, 'slide-hackhebike-01.webp', '', 'slide-hackhebike-01'),
+(34, 'slide-hackhebike-02.webp', '', 'slide-hackhebike-02');
 
 -- --------------------------------------------------------
 
@@ -544,17 +549,12 @@ CREATE TABLE `tin_sanpham` (
 --
 
 INSERT INTO `tin_sanpham` (`id`, `hinhanh`, `hinhndab`, `noidung`, `trangchu`, `mota`, `tieude`, `tieude_en`, `tukhoa`, `linkurl`, `thuocloai`) VALUES
-(1, 'banner-aodoi-001_7_11zon.webp', '', '', '', '', '', 'shop love studio sale1', '', 'shop-love-studio-sale1', 0),
-(2, 'banner-aodoi-002_8_11zon.webp', '', '', '', '', '', 'shop love studio sale2', '', 'shop-love-studio-sale2', 0),
-(3, 'banner-dogiadinh-001_1_11zon.webp', '', '', '', '', '', 'shop love studio sale3', '', 'shop-love-studio-sale3', 0),
-(4, 'banner-dogiadinh-002_2_11zon.webp', '', '', '', '', '', 'shop love studio sale4', '', 'shop-love-studio-sale4', 0),
-(5, 'banner-aoformrong-001_9_11zon.webp', '', '', '', '', '', 'shop love studio sale5', '', 'shop-love-studio-sale5', 0),
-(6, 'banner-aoformrong-002_10_11zon.webp', '', '', '', '', '', 'shop love studio sale6', '', 'shop-love-studio-sale6', 0),
-(7, 'banner-aothunnu-001_11_11zon.webp', '', '', '', '', '', 'shop love studio sale7', '', 'shop-love-studio-sale7', 0),
-(8, 'banner-aothunnu-002_12_11zon.webp', '', '', '', '', '', 'shop love studio sale8', '', 'shop-love-studio-sale8', 0),
-(9, 'banner-quanshort-001_5_11zon.webp', '', '', '', '', '', 'shop love studio sale7', '', 'shop-love-studio-sale7', 0),
-(10, 'banner-quanshort-002_6_11zon.webp', '', '', '', '', '', 'shop love studio sale8', '', 'shop-love-studio-sale8', 0),
-(11, 'banner-quandai-001_3_11zon.webp', '', '', '', '', '', 'shop love studio sale9', '', 'shop-love-studio-sale9', 0);
+(20, 'instagram6.webp', '2999', '', '1', '', '', 'hackhebikestore-ins6', '', 'hackhebikestore-ins6', 47),
+(19, 'instagram5.webp', '956', '', '1', '', '', 'hackhebikestore-ins5', '', 'hackhebikestore-ins5', 47),
+(18, 'instagram4.webp', '9472', '', '1', '', '', 'hackhebikestore-ins4', '', 'hackhebikestore-ins4', 47),
+(17, 'instagram3.webp', '5637', '', '1', '', '', 'hackhebikestore-ins3', '', 'hackhebikestore-ins3', 47),
+(16, 'instagram2.webp', '3747', '', '1', '', '', 'hackhebikestore-ins2', '', 'hackhebikestore-ins2', 47),
+(15, 'instagram1.webp', '8562', '', '', ' ', '', 'hackhebikestore-ins1', '', 'hackhebikestore-ins1', 47);
 
 -- --------------------------------------------------------
 
@@ -900,7 +900,7 @@ ALTER TABLE `lienhe`
 -- AUTO_INCREMENT for table `loai_ma_sanpham`
 --
 ALTER TABLE `loai_ma_sanpham`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `loai_tin_dichvu`
@@ -966,7 +966,7 @@ ALTER TABLE `thong_tin_lh`
 -- AUTO_INCREMENT for table `thuong_mai`
 --
 ALTER TABLE `thuong_mai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tin_dichvu`
@@ -978,7 +978,7 @@ ALTER TABLE `tin_dichvu`
 -- AUTO_INCREMENT for table `tin_sanpham`
 --
 ALTER TABLE `tin_sanpham`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tin_thicong`

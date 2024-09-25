@@ -17,19 +17,19 @@ include("title_meta/title_meta.php");
     <title><?php echo $title_meta; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="hinhmenu/icon/icon-faugetglass.webp" rel="shortcut icon" />
-    <link rel="canonical" href="https://faugetglass.site/" />
-    <meta name="twitter:card" content="https://faugetglass.site/<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <link href="hinhmenu/icon/icon-hackhebikestore.webp" rel="shortcut icon" />
+    <link rel="canonical" href="https://hackhe.xyz/" />
+    <meta name="twitter:card" content="https://hackhe.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
     <meta name="keywords" content="<?php echo $key; ?>" />
     <meta name="description" content="<?php echo $dis; ?>" />
-    <meta property="og:url" content="https://faugetglass.site/<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="https://hackhe.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
     <meta property="og:type" content="website" />
-    <meta property="og:image:alt" content="https://faugetglass.site/<?php echo $product['tieude']; ?>" />
-    <meta property="og:title" content="https://faugetglass.site/<?php echo $product['tieude']; ?>" />
-    <meta property="og:description" content="https://faugetglass.site/<?php echo $product['mota']; ?>" />
+    <meta property="og:image:alt" content="https://hackhe.xyz/<?php echo $product['tieude']; ?>" />
+    <meta property="og:title" content="https://hackhe.xyz/<?php echo $product['tieude']; ?>" />
+    <meta property="og:description" content="https://hackhe.xyz/<?php echo $product['mota']; ?>" />
     <meta property="og:image" content="<?php echo $img; ?>" />
     <meta property="og:updated_time" content="1578214368" />
-    <meta property="og:image" content="https://faugetglass.site/hinhmenu/logo/logo-faugetglass.webp" />
+    <meta property="og:image" content="https://hackhe.xyz/hinhmenu/logo/logo-hackhebikestore.webp" />
     <meta property="og:description" content="<?php echo $dis; ?>" />
 
     <script>
@@ -62,7 +62,7 @@ include("title_meta/title_meta.php");
     "@context": "http://schema.org",
     "@type": "WebSite",
     "name": "fauget glass",
-    "url": "https://faugetglass.site/"
+    "url": "https://hackhe.xyz/"
 }
 </script>
 </head>
