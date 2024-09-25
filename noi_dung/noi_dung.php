@@ -1,6 +1,9 @@
-<h1 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a href='https://faugetglass.site/'>Best polarized sunglasses</a></h1>
-<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a href='https://faugetglass.site/'>Affordable designer sunglasses</a></h2>
-<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a href='https://faugetglass.site/'>Stylish transition glasses for men</a></h2>
+<h1 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
+        href='https://faugetglass.site/'>Best polarized sunglasses</a></h1>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
+        href='https://faugetglass.site/'>Affordable designer sunglasses</a></h2>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
+        href='https://faugetglass.site/'>Stylish transition glasses for men</a></h2>
 
 <body>
     <div class="page-wrapper">
@@ -28,43 +31,42 @@
                                 $giagoc = '$' . number_format($row['giagoc'], 2, '.', ',');
                                 $link = str_replace("?", "", strtolower("detail/$url"));
                             ?>
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="<?php echo $link; ?>">
-                                            <img src="<?php echo $link_hinh; ?>" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="home" class="product-category">Bike</a>
-                                        </div>
-                                        <p class="product-title p-product-title">
-                                            <a href="<?php echo $link; ?>"><?php echo $tieude; ?></a>
-                                        </p>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="product-price"><?php echo $giagoc_formatted; ?></span>
-                                        </div>
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="<?php echo $link; ?>" class="btn-quickviews"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                            <div class="product-default">
+                                <figure>
+                                    <a href="<?php echo $link; ?>">
+                                        <img src="<?php echo $link_hinh; ?>" width="280" height="280" alt="product">
+                                    </a>
+                                    <div class="label-group">
+                                        <div class="product-label label-hot">HOT</div>
+                                    </div>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="category-list">
+                                        <a href="home" class="product-category">Bike</a>
+                                    </div>
+                                    <p class="product-title p-product-title">
+                                        <a href="<?php echo $link; ?>"><?php echo $tieude; ?></a>
+                                    </p>
+                                    <div class="ratings-container">
+                                        <div class="product-ratings">
+                                            <span class="ratings" style="width:80%"></span>
+                                            <span class="tooltiptext tooltip-top"></span>
                                         </div>
                                     </div>
+                                    <div class="price-box">
+                                        <span class="product-price"><?php echo $giagoc_formatted; ?></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
+                                                class="icon-heart"></i></a>
+                                        <a href="demo27-product.html"
+                                            class="btn-icon btn-add-cart product-type-simple"><i
+                                                class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
+                                        <a href="<?php echo $link; ?>" class="btn-quickviews" title="Quick View"><i
+                                                class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                 </div>
+                            </div>
                             <?php
                             }
                             $stmt->close();
@@ -155,46 +157,61 @@
                         <div class="products-slider 5col owl-carousel owl-theme" data-owl-options="{
                             'margin': 0
                         }">
+                            <?php
+                            require('db.php');
+                            // Prepared statement for improved security
+                            $stmt = $link->prepare("SELECT * FROM (SELECT * FROM ma_sanpham WHERE banchay=1 ORDER BY id DESC LIMIT 100) AS recent_news ORDER BY RAND() LIMIT 6");
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            // Fetch data and display products
+                            while ($row = $result->fetch_assoc()) {
+                                $link_hinh = "HinhCTSP/HinhSanPham/" . htmlspecialchars($row['hinhanh']);
+                                $tieude = htmlspecialchars($row['tieude']);
+                                $url = htmlspecialchars($row['linkurl']);
+                                $giagoc = '$' . number_format($row['giagoc'], 2, '.', ',');
+                                $link = str_replace("?", "", strtolower("detail/$url"));
+                            ?>
                             <div class="product-default">
                                 <figure>
-                                    <a href="demo27-product.html">
-                                        <img src="assets/images/demoes/demo27/products/product-2.jpg" width="280"
-                                            height="280" alt="product">
+                                    <a href="<?php echo $link; ?>">
+                                        <img src="<?php echo $link_hinh; ?>" width="280" height="280" alt="product">
                                     </a>
                                     <div class="label-group">
                                         <div class="product-label label-hot">HOT</div>
-                                        <div class="product-label label-sale">-13%</div>
                                     </div>
                                 </figure>
                                 <div class="product-details">
                                     <div class="category-list">
-                                        <a href="category.html" class="product-category">Category</a>
+                                        <a href="home" class="product-category">Bike</a>
                                     </div>
-                                    <h3 class="product-title">
-                                        <a href="demo27-product.html">Porto Fashion Bike</a>
-                                    </h3>
+                                    <p class="product-title p-product-title">
+                                        <a href="<?php echo $link; ?>"><?php echo $tieude; ?></a>
+                                    </p>
                                     <div class="ratings-container">
                                         <div class="product-ratings">
-                                            <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                            <span class="ratings" style="width:80%"></span>
                                             <span class="tooltiptext tooltip-top"></span>
-                                        </div><!-- End .product-ratings -->
-                                    </div><!-- End .product-container -->
+                                        </div>
+                                    </div>
                                     <div class="price-box">
-                                        <span class="old-price">$299.0</span>
-                                        <span class="product-price">$259.0</span>
-                                    </div><!-- End .price-box -->
+                                        <span class="product-price"><?php echo $giagoc_formatted; ?></span>
+                                    </div>
                                     <div class="product-action">
                                         <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
                                                 class="icon-heart"></i></a>
                                         <a href="demo27-product.html"
                                             class="btn-icon btn-add-cart product-type-simple"><i
                                                 class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                        <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                            title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                                        <a href="<?php echo $link; ?>" class="btn-quickviews" title="Quick View"><i
+                                                class="fas fa-external-link-alt"></i></a>
                                     </div>
-                                </div><!-- End .product-details -->
-
+                                </div>
                             </div>
+                            <?php
+                            }
+                            $stmt->close();
+                            ?>
                         </div>
 
                         <div class="row">
@@ -202,15 +219,15 @@
                                 <div class="banner banner3 d-flex flex-wrap align-items-center bg-gray h-100 appear-animate"
                                     data-animation-name="fadeInRightShorter" data-animation-delay="100">
                                     <div class="col-sm-4 text-center">
-                                        <h3 class="font5 mb-0">Summer Sale</h3>
-                                        <h2 class="text-uppercase mb-0">20% off</h2>
+                                        <p class="banner3-ads font5 mb-0">Summer Sale</p>
+                                        <p class="banner3-h2-ads text-uppercase mb-0">20% off</p>
                                     </div>
                                     <div class="col-sm-4">
-                                        <img src="assets/images/demoes/demo27/banners/banner-3.jpg" alt="banner" width="232"
-                                            height="124">
+                                        <img src="hinhmenu/banner/bannersale-hackhebike-03.webp" alt="banner"
+                                            width="232" height="124">
                                     </div>
                                     <div class="col-sm-4 text-center">
-                                        <a href="demo27-shop.html" class="btn btn-dark">Shop All Sale</a>
+                                        <a href="product" class="btn btn-dark">Shop All Sale</a>
                                     </div>
                                 </div>
                             </div>
@@ -218,15 +235,15 @@
                                 <div class="banner banner4 d-flex flex-wrap align-items-center bg-primary h-100 appear-animate"
                                     data-animation-name="fadeInRightShorter" data-animation-delay="400">
                                     <div class="col-sm-4 text-center">
-                                        <h3 class="font5 text-white mb-0">Flash Sale</h3>
-                                        <h2 class="text-uppercase text-white mb-0">30% off</h2>
+                                        <p class="banner4-ads font5 text-white mb-0">Flash Sale</p>
+                                        <p class="banner4-h2-ads text-uppercase text-white mb-0">30% off</p>
                                     </div>
                                     <div class="col-sm-4">
-                                        <img src="assets/images/demoes/demo27/banners/banner-4.jpg" alt="banner" width="232"
-                                            height="124">
+                                        <img src="hinhmenu/banner/bannersale-hackhebike-01.webp" alt="banner"
+                                            width="232" height="124">
                                     </div>
                                     <div class="col-sm-4 text-center">
-                                        <a href="demo27-shop.html" class="btn btn-light">Shop All Sale</a>
+                                        <a href="product" class="btn btn-light">Shop All Sale</a>
                                     </div>
                                 </div>
                             </div>
