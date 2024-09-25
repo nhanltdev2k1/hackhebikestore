@@ -41,16 +41,20 @@ include("title_meta/title_meta.php");
     (function(d) {
         var wf = d.createElement('script'),
             s = d.scripts[0];
-        wf.src = 'sitefaugetglass/assets/js/webfont.js';
+        wf.src = 'sitefaugetglass/sitehackhebikestore/assets/js/webfont.js';
         wf.async = true;
         s.parentNode.insertBefore(wf, s);
     })(document);
     </script>
 
-    <link rel="stylesheet" href="sitefaugetglass/assets/css/bootstrap.min.css">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="sitehackhebikestore/assets/css/bootstrap.min.css">
+
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="sitefaugetglass/assets/css/demo6.min.css">
-    <link rel="stylesheet" type="text/css" href="sitefaugetglass/assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="sitehackhebikestore/assets/css/demo27.min.css">
+    <link rel="stylesheet" type="text/css" href="sitehackhebikestore/assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="sitehackhebikestore/assets/vendor/simple-line-icons/css/simple-line-icons.min.css">
 
     <script type="application/ld+json">
     {
@@ -168,7 +172,7 @@ include("title_meta/title_meta.php");
 		include("xu_ly_post_get/xu_ly_post_get.php");
 		?>
         <?php
-		include('menutopdidong/menutopchitiet.php');
+		include('menutopdidong/menutopdidong.php');
 		?>
         <?php
 		include('bienluan_phanthan.php');
@@ -183,14 +187,11 @@ include("title_meta/title_meta.php");
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
     <!-- Plugins JS File -->
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="sitefaugetglass/assets/js/jquery.min.js"></script>
-    <script src="sitefaugetglass/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="sitefaugetglass/assets/js/plugins.min.js"></script>
-    <script src="sitefaugetglass/assets/js/nouislider.min.js"></script>
-    <script src="sitefaugetglass/assets/js/jquery.appear.min.js"></script>
-
+    <script src="sitehackhebikestore/assets/js/jquery.min.js"></script>
+    <script src="sitehackhebikestore/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="sitehackhebikestore/assets/js/plugins.min.js"></script>
+    <script src="sitehackhebikestore/assets/js/nouislider.min.js"></script>
     <!-- Main JS File -->
-    <script src="sitefaugetglass/assets/js/main.min.js"></script>
+    <script src="sitehackhebikestore/assets/js/main.min.js"></script>
 
 </html>
