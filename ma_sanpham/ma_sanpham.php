@@ -1,9 +1,7 @@
-<h1 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
-        href='https://faugetglass.site/'>Best polarized sunglasses</a></h1>
-<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
-        href='https://faugetglass.site/'>Affordable designer sunglasses</a></h2>
-<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; margin: 0px; padding: 0px;"><a
-        href='https://faugetglass.site/'>Stylish transition glasses for men</a></h2>
+<h1 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Folding bikes for commuters</a></h1>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Lightweight racing bikes</a></h2>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Kids' bikes safety</a></h2>
+
 <?php
 include('phantrang/phantrang_dichvu.php');
 ?>
@@ -89,15 +87,13 @@ include('phantrang/phantrang_dichvu.php');
                                                 $name_url = strtolower($tv_21['name_url']);
                                                 $thuocloai = $tv_21['thuocloai'];
                                             ?>
-                                            <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?>
-                                            </option>
+                                                <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?>
+                                                </option>
                                             <?php } ?>
                                         </select>
-                                    </div><!-- End .select-custom -->
-
-
-                                </div><!-- End .toolbox-item -->
-                            </div><!-- End .toolbox-left -->
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="toolbox-right">
                                 <div class="toolbox-item toolbox-show">
@@ -105,12 +101,12 @@ include('phantrang/phantrang_dichvu.php');
 
                                     <div class="select-custom">
                                         <select name="count" class="form-control">
-                                            <option value="12">12</option>
-                                            <option value="24">24</option>
-                                            <option value="36">36</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
                                         </select>
-                                    </div><!-- End .select-custom -->
-                                </div><!-- End .toolbox-item -->
+                                    </div>
+                                </div>
 
                                 <div class="toolbox-item layout-modes">
                                     <a href="category.html" class="layout-btn btn-grid active" title="Grid">
@@ -119,472 +115,87 @@ include('phantrang/phantrang_dichvu.php');
                                     <a href="category-list.html" class="layout-btn btn-list" title="List">
                                         <i class="icon-mode-list"></i>
                                     </a>
-                                </div><!-- End .layout-modes -->
-                            </div><!-- End .toolbox-right -->
+                                </div>
+                            </div>
                         </nav>
 
                         <div class="row">
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-2.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                            <div class="product-label label-sale">-13%</div>
+                            <?php
+                            require('db.php');
+                            $p = new pager;
+                            $limit = 25;
+                            $start = $p->findStart($limit);
+
+                            // Prepare and execute count query
+                            $stmt = $link->prepare("SELECT COUNT(*) FROM ma_sanpham");
+                            $stmt->execute();
+                            $stmt->bind_result($count);
+                            $stmt->fetch();
+                            $stmt->close();
+
+                            // Calculate pages
+                            $pages = $p->findPages($count, $limit);
+
+                            // Prepare and execute main query
+                            $stmt = $link->prepare("SELECT * FROM ma_sanpham ORDER BY id DESC LIMIT ?, ?");
+                            $stmt->bind_param('ii', $start, $limit);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            while ($row = $result->fetch_assoc()) {
+                                $link_hinh = "HinhCTSP/HinhSanPham/" . htmlspecialchars($row['hinhanh'], ENT_QUOTES, 'UTF-8');
+                                $id = htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');
+                                $tieude = htmlspecialchars($row['tieude'], ENT_QUOTES, 'UTF-8');
+                                $giagoc = number_format($row['giagoc'], 2, '.', ',');
+                                $giagoc_formatted = '$' . $giagoc;
+                                $url = htmlspecialchars($row['linkurl'], ENT_QUOTES, 'UTF-8');
+                                $link = htmlspecialchars(strtolower("detail/$url"), ENT_QUOTES, 'UTF-8');
+                            ?>
+                                <div class="col-6 col-sm-4 col-xl-3">
+                                    <div class="product-default">
+                                        <figure>
+                                            <a href="<?php echo $link; ?>">
+                                                <img src="<?php echo $link_hinh; ?>" width="280"
+                                                    height="280" alt="<?php echo $tieude; ?>">
+                                            </a>
+                                            <div class="label-group">
+                                                <div class="product-label label-hot">HOT</div>
+                                                <div class="product-label label-sale">-13%</div>
+                                            </div>
+                                        </figure>
+                                        <div class="product-details">
+                                            <div class="category-list">
+                                                <a href="home" class="product-category">Category</a>
+                                            </div>
+                                            <p class="product-title p-product-title">
+                                                <a href="<?php echo $link; ?>"><?php echo $tieude; ?></a>
+                                            </p>
+                                            <div class="ratings-container">
+                                                <div class="product-ratings">
+                                                    <span class="ratings" style="width:80%"></span>
+                                                    <span class="tooltiptext tooltip-top"></span>
+                                                </div>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="product-price"><?php echo $giagoc_formatted; ?></span>
+                                            </div>
+                                            <div class="product-action">
+                                                <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
+                                                        class="icon-heart"></i></a>
+                                                <a href="#"
+                                                    class="btn-icon btn-add-cart product-type-simple"><i
+                                                        class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
+                                                <a href="<?php echo $link; ?>" class="btn-quickviews"
+                                                    title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                                            </div>
                                         </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Porto Fashion Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="old-price">$299.0</span>
-                                            <span class="product-price">$259.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
+                                    </div>
                                 </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-3.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-sale">-35%</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Green Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:0%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$129.0 &ndash; $149.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html" class="btn-icon btn-add-cart"><i
-                                                    class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-1.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Black Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$299.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-6.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-sale">-40%</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Blue Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="old-price">$99.0</span>
-                                            <span class="product-price">$59.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html" class="btn-icon btn-add-cart"><i
-                                                    class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-8.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-sale">-17%</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Glasses</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:0%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="old-price">$59.0</span>
-                                            <span class="product-price">$49.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-9.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Frames</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:60%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$599.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html" class="btn-icon btn-add-cart"><i
-                                                    class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-4.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-sale">-38%</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">White Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="old-price">$199.0</span>
-                                            <span class="product-price">$129.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-11.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Accessories</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$299.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-7.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Kit</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$55.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-10.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Chain</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$39.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html" class="btn-icon btn-add-cart"><i
-                                                    class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-5.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Casual Bike</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$101.0 &ndash; $111.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                            <div class="col-6 col-sm-4 col-xl-3">
-                                <div class="product-default">
-                                    <figure>
-                                        <a href="demo27-product.html">
-                                            <img src="assets/images/demoes/demo27/products/product-12.jpg" width="280"
-                                                height="280" alt="product">
-                                        </a>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category">Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="demo27-product.html">Bike Backpack</a>
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div><!-- End .product-ratings -->
-                                        </div><!-- End .product-container -->
-                                        <div class="price-box">
-                                            <span class="product-price">$59.0</span>
-                                        </div><!-- End .price-box -->
-                                        <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
-                                                    class="icon-heart"></i></a>
-                                            <a href="demo27-product.html"
-                                                class="btn-icon btn-add-cart product-type-simple"><i
-                                                    class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview"
-                                                title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details -->
-                                </div>
-                            </div><!-- End .col-xl-3 -->
-                        </div><!-- End .row -->
+                            <?php
+                            }
+                            $stmt->close();
+                            ?>
+                        </div>
 
                         <nav class="toolbox toolbox-pagination mb-0">
                             <div class="toolbox-item toolbox-show">
@@ -592,204 +203,32 @@ include('phantrang/phantrang_dichvu.php');
 
                                 <div class="select-custom">
                                     <select name="count" class="form-control">
-                                        <option value="12">12</option>
-                                        <option value="24">24</option>
-                                        <option value="36">36</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
                                     </select>
-                                </div><!-- End .select-custom -->
-                            </div><!-- End .toolbox-item -->
+                                </div>
+                            </div>
 
                             <ul class="pagination toolbox-item">
-                                <li class="page-item disabled">
-                                    <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item">
-                                    <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
-                                </li>
+                                <div class="bgphantranga">
+                                    <?php
+                                    echo "<div align='left' class='phantrang' style='float: left;width: 100%;text-align: right;'> &nbsp;&nbsp;&nbsp;&nbsp;Page: ";
+                                    $pagelist = $p->pageList($_GET['page'], $pages);
+                                    echo $pagelist;
+                                    echo "</div>"
+                                    ?>
+                                </div>
                             </ul>
                         </nav>
-                    </div><!-- End .col-lg-9 -->
+                    </div>
 
                     <div class="sidebar-overlay"></div>
                     <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
-                        <div class="sidebar-wrapper">
-                            <div class="widget">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true"
-                                        aria-controls="widget-body-1">Categories</a>
-                                </h3>
-
-                                <div class="collapse show" id="widget-body-1">
-                                    <div class="widget-body">
-                                        <ul class="cat-list">
-                                            <li>
-                                                <a href="#widget-category-1" data-toggle="collapse" role="button"
-                                                    aria-expanded="true"
-                                                    aria-controls="widget-category-1">Accessories<span
-                                                        class="products-count">(1)</span><span
-                                                        class="toggle"></span></a>
-                                                <div class="collapse show" id="widget-category-1">
-                                                    <ul class="cat-sublist">
-                                                        <li><a href="#">Bike Chains<span
-                                                                    class="products-count">(1)</span></a></li>
-                                                        <li><a href="#">Bike Frames<span
-                                                                    class="products-count">(3)</span></a></li>
-                                                        <li><a href="#">Bike Pedals<span
-                                                                    class="products-count">(2)</span></a></li>
-                                                        <li><a href="#">Bike Saddles<span
-                                                                    class="products-count">(1)</span></a></li>
-                                                        <li><a href="#">Bike Tools<span
-                                                                    class="products-count">(3)</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li><a href="#">Bikes<span class="products-count">(6)</span></a></li>
-                                        </ul>
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-price">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-                                        aria-controls="widget-body-2">Price</a>
-                                </h3>
-
-                                <div class="collapse show" id="widget-body-2">
-                                    <div class="widget-body pb-0">
-                                        <form action="#">
-                                            <div class="price-slider-wrapper">
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .price-slider-wrapper -->
-
-                                            <div
-                                                class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                                                <div class="filter-price-text">
-                                                    Price:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
-
-                                                <button type="submit" class="btn btn-primary">Filter</button>
-                                            </div><!-- End .filter-price-action -->
-                                        </form>
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-color">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true"
-                                        aria-controls="widget-body-3">Color</a>
-                                </h3>
-
-                                <div class="collapse show" id="widget-body-3">
-                                    <div class="widget-body pb-0">
-                                        <ul class="config-swatch-list">
-                                            <li class="active">
-                                                <a href="#" style="background-color: #000;">Black</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="background-color: #0188cc;">Blue</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="background-color: #81d742;">Green</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="background-color: #eded65;">Yellow</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="background-color: #6085a5;">Indigo</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" style="background-color: #ab6e6e;">Red</a>
-                                            </li>
-                                        </ul>
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true"
-                                        aria-controls="widget-body-4">Sizes</a>
-                                </h3>
-
-                                <div class="collapse show" id="widget-body-4">
-                                    <div class="widget-body">
-                                        <ul class="cat-list">
-                                            <li><a href="#">Extra Large</a></li>
-                                            <li><a href="#">Large</a></li>
-                                            <li><a href="#">Medium</a></li>
-                                            <li><a href="#">Small</a></li>
-                                        </ul>
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-featured pb-0">
-                                <h3 class="widget-title">Featured Products</h3>
-
-                                <div class="widget-body">
-                                    <div class="featured-col">
-                                        <div class="product-default left-details product-widget">
-                                            <figure>
-                                                <a href="demo27-product.html">
-                                                    <img src="assets/images/demoes/demo27/products/small/product-1.jpg"
-                                                        width="75" height="75" alt="product" />
-                                                </a>
-                                            </figure>
-                                            <div class="product-details">
-                                                <h3 class="product-title">
-                                                    <a href="demo27-product.html">Casual Bike</a>
-                                                </h3>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:80%"></span>
-                                                        <!-- End .ratings -->
-                                                        <span class="tooltiptext tooltip-top"></span>
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .product-container -->
-                                                <div class="price-box">
-                                                    <span class="product-price">$299.0</span>
-                                                </div><!-- End .price-box -->
-                                            </div><!-- End .product-details -->
-                                        </div>
-                                        <div class="product-default left-details product-widget">
-                                            <figure>
-                                                <a href="demo27-product.html">
-                                                    <img src="assets/images/demoes/demo27/products/small/product-2.jpg"
-                                                        width="75" height="75" alt="product" />
-                                                </a>
-                                            </figure>
-                                            <div class="product-details">
-                                                <h3 class="product-title">
-                                                    <a href="demo27-product.html">Bike Accessories</a>
-                                                </h3>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:0%"></span>
-                                                        <!-- End .ratings -->
-                                                        <span class="tooltiptext tooltip-top"></span>
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .product-container -->
-                                                <div class="price-box">
-                                                    <span class="product-price">$299.0</span>
-                                                </div><!-- End .price-box -->
-                                            </div><!-- End .product-details -->
-                                        </div>
-                                    </div><!-- End .featured-col -->
-                                </div><!-- End .widget-body -->
-                            </div><!-- End .widget -->
-                        </div><!-- End .sidebar-wrapper -->
-                    </aside><!-- End .col-lg-3 -->
-                </div><!-- End .row -->
-            </div><!-- End .container -->
-        </main><!-- End .main -->
+                        <?php include('menu_trai/leftsanpham.php'); ?>
+                    </aside>
+                </div>
+            </div>
+        </main>
     </div>
 </body>

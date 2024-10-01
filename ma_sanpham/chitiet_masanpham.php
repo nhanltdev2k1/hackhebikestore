@@ -1,8 +1,8 @@
 <body>
     <div class="page-wrapper">
         <main class="main">
-            <div class="container-fluid">
-                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
                     <ol class="breadcrumb">
                         <?php
                         require('db.php');
@@ -18,7 +18,9 @@
                         <li class="breadcrumb-item"><a href="product">Product</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?php echo "$ten" ?></li>
                     </ol>
-                </nav>
+                </div>
+            </nav>
+            <div class="container">
                 <div class="row">
                     <?php
                     include_once("phan_trang.php");
@@ -82,7 +84,7 @@
                                                     <span class="ratings" style="width:60%"></span>
                                                     <span class="tooltiptext tooltip-top"></span>
                                                 </div>
-                                                <a href="#" class="rating-link">( 6 Bình luận )</a>
+                                                <a href="#" class="rating-link">( 6 Comment )</a>
                                             </div>
                                             <hr class="short-divider">
                                             <div class="price-box">
@@ -266,10 +268,11 @@
                     <div class="sidebar-overlay"></div>
                     <div class="sidebar-toggle custom-sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
                     <aside class="sidebar-product right-sidebar col-lg-3 mobile-sidebar">
-                        <?php include('menu_trai/leftctsanpham.php'); ?>
+                        <?php include('menu_trai/rightctsanpham.php'); ?>
                     </aside>
                     <!-- End .col-md-3 -->
                 </div>
+
                 <!-- End .row -->
                 <div class="products-section pt-0">
                     <p class="section-title" style="color: #000; font-weight:bold;">Related Products</h2>
@@ -393,9 +396,9 @@
                 }
 
                 $categories = [
-                    'Featured Products' => 'noibat=1',
+                    'Most Popular Products' => 'noibat=1',
                     'Best Selling Products' => 'banchay=1',
-                    'Top Rated Products' => 'khuyenmai=1'
+                    'Premium Products' => 'khuyenmai=1'
                 ];
                 ?>
 
@@ -413,7 +416,8 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-        </main>
+    </div>
+    </main>
     </div>
 </body>
 

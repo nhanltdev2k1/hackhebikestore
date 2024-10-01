@@ -10,60 +10,60 @@ include("title_meta/title_meta.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<base href="http://localhost/hackhebikestore/">
+<base href="http://localhost:8080/hackhebikestore/">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $title_meta; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="hinhmenu/icon/icon-hackhebikestore.webp" rel="shortcut icon" />
-    <link rel="canonical" href="https://hackhe.xyz/" />
-    <meta name="twitter:card" content="https://hackhe.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <link href="hinhmenu/icon/icon-hackhebike.webp" rel="shortcut icon" />
+    <link rel="canonical" href="https://parcoin.xyz/" />
+    <meta name="twitter:card" content="https://parcoin.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
     <meta name="keywords" content="<?php echo $key; ?>" />
     <meta name="description" content="<?php echo $dis; ?>" />
-    <meta property="og:url" content="https://hackhe.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="https://parcoin.xyz/<?php echo $_SERVER['REQUEST_URI']; ?>" />
     <meta property="og:type" content="website" />
-    <meta property="og:image:alt" content="https://hackhe.xyz/<?php echo $product['tieude']; ?>" />
-    <meta property="og:title" content="https://hackhe.xyz/<?php echo $product['tieude']; ?>" />
-    <meta property="og:description" content="https://hackhe.xyz/<?php echo $product['mota']; ?>" />
+    <meta property="og:image:alt" content="https://parcoin.xyz/<?php echo $product['tieude']; ?>" />
+    <meta property="og:title" content="https://parcoin.xyz/<?php echo $product['tieude']; ?>" />
+    <meta property="og:description" content="https://parcoin.xyz/<?php echo $product['mota']; ?>" />
     <meta property="og:image" content="<?php echo $img; ?>" />
     <meta property="og:updated_time" content="1578214368" />
-    <meta property="og:image" content="https://hackhe.xyz/hinhmenu/logo/logo-hackhebikestore.webp" />
+    <meta property="og:image" content="https://parcoin.xyz/hinhmenu/logo/logo-hackhebike.webp" />
     <meta property="og:description" content="<?php echo $dis; ?>" />
 
     <script>
-    WebFontConfig = {
-        google: {
-            families: ['Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700']
-        }
-    };
-    (function(d) {
-        var wf = d.createElement('script'),
-            s = d.scripts[0];
-        wf.src = 'sitehackhebikestore/assets/js/webfont.js';
-        wf.async = true;
-        s.parentNode.insertBefore(wf, s);
-    })(document);
+        WebFontConfig = {
+            google: {
+                families: ['Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700']
+            }
+        };
+        (function(d) {
+            var wf = d.createElement('script'),
+                s = d.scripts[0];
+            wf.src = 'siteparcoinstore/assets/js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
     </script>
 
-    <link rel="stylesheet" href="sitehackhebikestore/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="siteparcoinstore/assets/css/bootstrap.min.css">
 
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="sitehackhebikestore/assets/css/demo27.min.css">
-    <link rel="stylesheet" type="text/css" href="sitehackhebikestore/assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="siteparcoinstore/assets/css/demo27.min.css">
+    <link rel="stylesheet" type="text/css" href="siteparcoinstore/assets/vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" type="text/css"
-        href="sitehackhebikestore/assets/vendor/simple-line-icons/css/simple-line-icons.min.css">
+        href="siteparcoinstore/assets/vendor/simple-line-icons/css/simple-line-icons.min.css">
 
 </head>
 
 <script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "fauget glass",
-    "url": "https://hackhe.xyz/"
-}
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "parcoin bike ",
+        "url": "https://parcoin.xyz/"
+    }
 </script>
 </head>
 
@@ -92,16 +92,16 @@ include("title_meta/title_meta.php");
                                 <div class="col-lg-6">
                                     <ul class="submenu">
                                         <?php
-										require('db.php');
-										$tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC";
-										$tv_11 = mysqli_query($link, $tv1);
-										while ($tv_21 = mysqli_fetch_array($tv_11)) {
-											$id = $tv_21['id'];
-											$thuocloai = $tv_21['thuocloai'];
-											$name_url = strtolower($tv_21['name_url']);
-										?>
-                                        <li><a href="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></a>
-                                        </li>
+                                        require('db.php');
+                                        $tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC";
+                                        $tv_11 = mysqli_query($link, $tv1);
+                                        while ($tv_21 = mysqli_fetch_array($tv_11)) {
+                                            $id = $tv_21['id'];
+                                            $thuocloai = $tv_21['thuocloai'];
+                                            $name_url = strtolower($tv_21['name_url']);
+                                        ?>
+                                            <li><a href="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></a>
+                                            </li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -165,36 +165,36 @@ include("title_meta/title_meta.php");
 
     </div>
     <?php
-	include("xu_ly_post_get/xu_ly_post_get.php");
-	?>
+    include("xu_ly_post_get/xu_ly_post_get.php");
+    ?>
     <?php
-	include('menutopdidong/menutopdidong.php');
-	?>
+    include('menutopdidong/menutopdidong.php');
+    ?>
     <?php
-	include('side/side.php');
-	?>
+    include('side/side.php');
+    ?>
     <?php
-	include('bienluan_phanthan.php');
-	?>
+    include('bienluan_phanthan.php');
+    ?>
     <?php
-	include('jqueryfooter/footertc.php');
+    include('jqueryfooter/footertc.php');
 
-	?>
+    ?>
 
 
 </body>
 <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
 <!-- Plugins JS File -->
-<script src="sitehackhebikestore/assets/js/jquery.min.js"></script>
-<script src="sitehackhebikestore/assets/js/bootstrap.bundle.min.js"></script>
-<script src="sitehackhebikestore/assets/js/plugins.min.js"></script>
-<script src="sitehackhebikestore/assets/js/optional/isotope.pkgd.min.js"></script>
-<script src="sitehackhebikestore/assets/js/jquery.appear.min.js"></script>
-<script src="sitehackhebikestore/assets/js/jquery.plugin.min.js"></script>
+<script src="siteparcoinstore/assets/js/jquery.min.js"></script>
+<script src="siteparcoinstore/assets/js/bootstrap.bundle.min.js"></script>
+<script src="siteparcoinstore/assets/js/plugins.min.js"></script>
+<script src="siteparcoinstore/assets/js/optional/isotope.pkgd.min.js"></script>
+<script src="siteparcoinstore/assets/js/jquery.appear.min.js"></script>
+<script src="siteparcoinstore/assets/js/jquery.plugin.min.js"></script>
 
 
 <!-- Main JS File -->
-<script src="sitehackhebikestore/assets/js/main.min.js"></script>
+<script src="siteparcoinstore/assets/js/main.min.js"></script>
 
 </html>

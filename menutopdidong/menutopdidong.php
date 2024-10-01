@@ -46,7 +46,7 @@
                 <button class="mobile-menu-toggler" type="button">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="dhome" class="logo">
+                <a href="home" class="logo">
                     <img src="hinhmenu/logo/logo-hackhebike.webp" alt="Porto Logo" width="111" height="44">
                 </a>
                 <nav class="main-nav">
@@ -61,34 +61,35 @@
                             <a href="product">Products</a>
                             <div class="megamenu megamenu-fixed-width">
                                 <?php
-                                    require('db.php');
-                                    function hien_thi_menu($limitStart, $limitEnd) {
-                                        global $link;
-                                        $tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC LIMIT $limitStart, $limitEnd";
-                                        $tv_11 = mysqli_query($link, $tv1);
-                                        while ($tv_21 = mysqli_fetch_array($tv_11)) {
-                                            $name_url = strtolower($tv_21['name_url']);
-                                            $thuocloai = $tv_21['thuocloai'];
-                                            echo "<li><a href='category/{$name_url}'>{$thuocloai}</a></li>";
-                                        }
+                                require('db.php');
+                                function hien_thi_menu($limitStart, $limitEnd)
+                                {
+                                    global $link;
+                                    $tv1 = "SELECT * FROM loai_ma_sanpham ORDER BY id ASC LIMIT $limitStart, $limitEnd";
+                                    $tv_11 = mysqli_query($link, $tv1);
+                                    while ($tv_21 = mysqli_fetch_array($tv_11)) {
+                                        $name_url = strtolower($tv_21['name_url']);
+                                        $thuocloai = $tv_21['thuocloai'];
+                                        echo "<li><a href='category/{$name_url}'>{$thuocloai}</a></li>";
                                     }
-                                    ?>
+                                }
+                                ?>
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <ul class="submenu">
-                                            <?php hien_thi_menu(0, 5);?>
+                                            <?php hien_thi_menu(0, 5); ?>
                                         </ul>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <ul class="submenu">
-                                            <?php hien_thi_menu(5, 4);?>
+                                            <?php hien_thi_menu(5, 4); ?>
                                         </ul>
                                     </div>
-                                    <div class="col-lg-3 p-0">
+                                    <div class="col-lg-4 p-0">
                                         <div class="menu-banner menu-banner-2">
                                             <figure>
-                                                <img src="hinhmenu/banner/bannermenu-faugetglasses.webp"
-                                                    alt="Menu banner" class="product-promo" width="380" height="790">
+                                                <img src="hinhmenu/banner/Banner-menu.webp"
+                                                    alt="Menu banner" class="product-promo">
                                             </figure>
                                         </div>
                                     </div>
@@ -117,7 +118,7 @@
                                     $url = $tv_2['linkurl'];
                                     $link = str_replace("?", "", strtolower("about/$url"));
                                 ?>
-                                <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
+                                    <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -149,7 +150,7 @@
                                         $name_url = strtolower($tv_21['name_url']);
                                         $thuocloai = $tv_21['thuocloai'];
                                     ?>
-                                    <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></option>
+                                        <option value="category/<?php echo $name_url; ?>"><?php echo $thuocloai; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

@@ -36,25 +36,25 @@
                                     }
                                 }">
                         <?php
-                            require('db.php');
-                            // Prepared statement for improved security
-                            $stmt = $link->prepare("SELECT * FROM (SELECT * FROM tin_sanpham ORDER BY id DESC LIMIT 100) AS recent_news ORDER BY RAND() LIMIT 6");
-                            $stmt->execute();
-                            $result = $stmt->get_result();
+                        require('db.php');
+                        // Prepared statement for improved security
+                        $stmt = $link->prepare("SELECT * FROM (SELECT * FROM tin_sanpham ORDER BY id DESC LIMIT 100) AS recent_news ORDER BY RAND() LIMIT 6");
+                        $stmt->execute();
+                        $result = $stmt->get_result();
 
-                            // Fetch data and display products
-                            while ($row = $result->fetch_assoc()) {
-                                $link_hinh = "HinhCTSP/Hinhdichvu/" . htmlspecialchars($row['hinhanh']);
-                                $tieude = htmlspecialchars($row['tieude']);
-                                $url = htmlspecialchars($row['linkurl']);
-                                $giagoc = '$' . number_format($row['giagoc'], 2, '.', ',');
-                                $link = str_replace("?", "", strtolower("detail/$url"));
-                            ?>
-                        <img src="<?php echo $link_hinh; ?>" alt="instagram" width="240" height="240">
+                        // Fetch data and display products
+                        while ($row = $result->fetch_assoc()) {
+                            $link_hinh = "HinhCTSP/Hinhdichvu/" . htmlspecialchars($row['hinhanh']);
+                            $tieude = htmlspecialchars($row['tieude']);
+                            $url = htmlspecialchars($row['linkurl']);
+                            $giagoc = '$' . number_format($row['giagoc'], 2, '.', ',');
+                            $link = str_replace("?", "", strtolower("detail/$url"));
+                        ?>
+                            <img src="<?php echo $link_hinh; ?>" alt="instagram" width="240" height="240">
                         <?php
-                            }
-                            $stmt->close();
-                            ?>
+                        }
+                        $stmt->close();
+                        ?>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
         <div class="footer-middle">
             <div class="row">
                 <div class="col-lg-3">
-                    <a href="home"><img src="hinhmenu/logo/logo-hackhebike.webp" alt="Logo" class="logo"></a>
+                    <a href="home"><img src="hinhmenu/logo/logowhite-hackhebike.webp" alt="Logo" class="logo"></a>
                     <div class="widget">
                         <ul class="contact-info">
                             <?php
@@ -153,7 +153,7 @@
                                                 $url = $tv_2['linkurl'];
                                                 $link = str_replace("?", "", strtolower("about/$url"));
                                             ?>
-                                            <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
+                                                <li><a href="<?php echo "$link"; ?>"><?php echo $tieude; ?></a></li>
                                             <?php } ?>
                                         </ul>
                                     </div>
@@ -179,9 +179,9 @@
                                                 $categoryUrl = strtolower($row['name_url']);
                                                 $categoryName = $row['thuocloai'];
                                             ?>
-                                            <li><a
-                                                    href="category/<?php echo $categoryUrl; ?>"><?php echo $categoryName; ?></a>
-                                            </li>
+                                                <li><a
+                                                        href="category/<?php echo $categoryUrl; ?>"><?php echo $categoryName; ?></a>
+                                                </li>
                                             <?php } ?>
                                         </ul>
                                     </div>
@@ -212,12 +212,12 @@
                                                 $url = $row['linkurl'];
                                                 $link = str_replace("?", "", strtolower("post/$url"));
                                             ?>
-                                            <h3 class="p-text-footer">
-                                                <a href="<?php echo $link; ?>">
-                                                    <i class="fa fa-fire"></i> <?php echo $tieude_en; ?>
-                                                </a>
-                                            </h3>
-                                            <br>
+                                                <h3 class="p-text-footer">
+                                                    <a href="<?php echo $link; ?>">
+                                                        <i class="fa fa-fire"></i> <?php echo $tieude_en; ?>
+                                                    </a>
+                                                </h3>
+                                                <br>
                                             <?php } ?>
                                         </ul>
                                     </div>
@@ -257,7 +257,7 @@
             </div><!-- End .row -->
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright text-lg-center mb-0">&copy; Porto eCommerce. 2021. All Rights
+            <p class="footer-copyright text-lg-center mb-0">&copy; Hackhe.xyz 2021. All Rights
                 Reserved
             </p>
         </div><!-- End .footer-bottom -->

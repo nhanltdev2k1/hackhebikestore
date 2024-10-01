@@ -2,7 +2,7 @@
     <div class="page-wrapper">
         <main class="main">
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <div class="container-fluid">
+                <div class="container">
                     <ol class="breadcrumb">
                         <?php
                         require('db.php');
@@ -19,12 +19,12 @@
                         $title = htmlspecialchars($tv_2['tieude_en'], ENT_QUOTES, 'UTF-8');
                         ?>
                         <li class="breadcrumb-item"><a href="home"><i class="icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="news/">Blog</a></li>
+                        <li class="breadcrumb-item"><a href="news/">News</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?php echo $title; ?></li>
                     </ol>
                 </div>
             </nav>
-            <div class="container-fluid products-body mb-3">
+            <div class="container products-body mb-3">
                 <div class="row">
                     <div class="col-lg-9 main-content product-sidebar-right mb-0">
                         <div class="row">

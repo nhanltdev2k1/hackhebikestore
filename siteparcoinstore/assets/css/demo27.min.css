@@ -14211,7 +14211,7 @@ footer .widget-title {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    width: 4.5rem;
+    width: 12.5rem;
     padding: 1rem 0.8rem 0.8rem;
     color: #fff;
     background: #222529;
@@ -16970,6 +16970,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .product-desc-content {
+    font-size: 1.6rem;
     margin-bottom: 2.5rem
 }
 
@@ -19689,5 +19690,3 @@ span.toggle {
     margin-bottom: 0 !important;
     font-weight: bolder;
 }
-
-    

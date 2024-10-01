@@ -8,7 +8,7 @@
             <div class="page-wrapper">
                 <main class="main">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                        <div class="container-fluid">
+                        <div class="container">
                             <ol class="breadcrumb">
                                 <?php
                                 require('db.php');

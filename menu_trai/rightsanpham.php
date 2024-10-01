@@ -28,9 +28,9 @@
     </div>
     <div class="widget widget-banner pb-2">
         <div class="product-category">
-            <a href="hinhmenu/banner/bannermenu-fauget.webp">
+            <a href="hinhmenu/banner/Banner-menu.webp">
                 <figure>
-                    <img src="hinhmenu/banner/bannermenu-fauget.webp" width="266" height="266" alt="Banner" />
+                    <img src="hinhmenu/banner/Banner-menu.webp" width="266" height="266" alt="Banner" />
                 </figure>
             </a>
         </div>

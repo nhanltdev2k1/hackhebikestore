@@ -1,5 +1,16 @@
+<h1 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Best city bikes</a></h1>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Mountain bikes for beginners</a></h2>
+<h2 style="font-size:0px; margin: 0px; height:0px; color:#fff; padding: 0px;"><a href='https://hackhe.xyz/'>Women’s cycling apparel</a></h2>
 <div class="page-wrapper">
 	<main class="main">
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="home"><i class="icon-home"></i></a></li>
+					<li class="breadcrumb-item active" aria-current="page">Contact</li>
+				</ol>
+			</div>
+		</nav>
 		<div class="container contact-us-container">
 			<div class="contact-info">
 				<div class="row">
@@ -43,12 +54,12 @@
 							<i class="far fa-envelope"></i>
 							<div class="feature-box-content">
 								<h3>Email Address</h3>
-								<h5><a href="mailto:<?php echo $contact_info[4] ?? ''; ?>" class="__cf_email__" data-cfemail="7e0e110c0a113e0e110c0a110a161b131b501d1113"><?php echo $contact_info[4] ?? ''; ?></a></h5>
+								<h5><a href="mailto:<?php echo $contact_info[4] ?? ''; ?>" class="__cf_email__" data-cfemail="7e0e110c0a113e0e110c0a110a161b131b501d1113" style="color: #000;"><?php echo $contact_info[4] ?? ''; ?></a></h5>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-sm-6 col-lg-3">
+					<div class=" col-sm-6 col-lg-3">
 						<div class="feature-box text-center">
 							<i class="far fa-calendar-alt"></i>
 							<div class="feature-box-content">
